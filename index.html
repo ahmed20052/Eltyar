@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>منظم المراجعات الدراسية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Enable dark mode
+        theme: {
+          extend: {
+            colors: {
+              teal: {
+                50: '#f0fdfa',
+                100: '#ccfbf1',
+                200: '#99f6e4',
+                300: '#5eead4',
+                400: '#2dd4bf',
+                500: '#14b8a6', // Primary teal
+                600: '#0d9488',
+                700: '#0f766e',
+                800: '#115e59',
+                900: '#134e4a',
+                950: '#042f2e',
+              },
+            },
+            fontFamily: {
+              sans: ['Cairo', 'sans-serif'],
+            },
+            animation: {
+              fadeIn: 'fadeIn 0.5s ease-out forwards',
+              fadeInDown: 'fadeInDown 0.5s ease-out forwards',
+              fadeInUp: 'fadeInUp 0.5s ease-out forwards',
+              subtlePopIn: 'subtlePopIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+              slideInFromRight: 'slideInFromRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+              listItemAppear: 'listItemAppear 0.4s ease-out forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                'from': { opacity: 0, transform: 'translateY(10px)' },
+                'to': { opacity: 1, transform: 'translateY(0)' },
+              },
+              fadeInDown: {
+                'from': { opacity: 0, transform: 'translateY(-10px)' },
+                'to': { opacity: 1, transform: 'translateY(0)' },
+              },
+              fadeInUp: { // This is good for general block appearance
+                'from': { opacity: 0, transform: 'translateY(20px)' },
+                'to': { opacity: 1, transform: 'translateY(0)' },
+              },
+              subtlePopIn: {
+                'from': { opacity: 0, transform: 'scale(0.95)' },
+                'to': { opacity: 1, transform: 'scale(1)' },
+              },
+              slideInFromRight: {
+                'from': { opacity: 0, transform: 'translateX(100%)' }, // Start off-screen to the right
+                'to': { opacity: 1, transform: 'translateX(0)' },
+              },
+              listItemAppear: { // For individual list items
+                'from': { opacity: 0, transform: 'translateY(10px) scale(0.98)' },
+                'to': { opacity: 1, transform: 'translateY(0) scale(1)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <script>
+      // Immediately apply theme from localStorage to prevent FOUC
+      (function() {
+        const theme = localStorage.getItem('studyAppSpacedRepetitionData-theme') || 'system';
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        /* overflow: hidden; /* Prevent body scroll when sidebar/main content handles its own scroll */
+      }
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px; /* Thinner scrollbar */
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; /* Make track transparent */
+      }
+      html.dark ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #bdc3c7; /* Lighter thumb */
+        border-radius: 10px;
+        /* border: 2px solid #e2e8f0; */ /* slate-200 for padding - removed border for cleaner look */
+      }
+      html.dark ::-webkit-scrollbar-thumb {
+        background: #34495e; /* Darker thumb */
+        /* border-color: #1e293b; */ /* slate-800 for padding - removed border */
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #95a5a6; 
+      }
+      html.dark ::-webkit-scrollbar-thumb:hover {
+        background: #2c3e50;
+      }
+      /* Basic styling for date input */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator:hover {
+        opacity: 1;
+      }
+      html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(0.8) brightness(0.9); 
+      }
+       input[type="date"] {
+        min-width: 150px; 
+      }
+    </style>
+    <!-- Importmap is removed. Vite will handle module resolution. -->
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "date-fns": "https://esm.sh/date-fns@^4.1.0",
+    "date-fns/": "https://esm.sh/date-fns@^4.1.0/",
+    "vite": "https://esm.sh/vite@^6.3.5",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^4.5.0",
+    "path": "https://esm.sh/path@^0.12.7",
+    "url": "https://esm.sh/url@^0.11.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gradient-to-br from-slate-100 to-sky-100 dark:from-slate-900 dark:to-sky-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+    <noscript>تحتاج إلى تفعيل جافاسكريبت لتشغيل هذا التطبيق.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script> {/* Vite will process this entry point */}
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
